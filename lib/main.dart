@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lab_store/presentation_layer/controller/theme/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'core/style/theme.dart';
 
@@ -6,18 +8,42 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  final bool isDark = true;
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
 
-  // This widget is the root of your application.
+class _MyAppState extends State<MyApp> {
+  ThemeProvider themeProvider = ThemeProvider();
+
+  void getCurrentAppTheme() async {
+    themeProvider.setDarkTheme = await ThemeProvider.themePreference.getTheme();
+  }
+
+  @override
+  void initState() {
+    getCurrentAppTheme();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: Styles.themeData(isDark, context),
-      home: Container(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+      ],
+      child: Consumer<ThemeProvider>(
+        builder: (context, value, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Lab Store',
+            theme: Styles.themeData(value.getDarkTheme, context),
+            home: Container(),
+          );
+        },
+      ),
     );
   }
 }
