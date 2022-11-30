@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
+import 'color_manager.dart';
+
 class Styles {
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return ThemeData(
+      appBarTheme:
+          AppBarTheme(elevation: 0.0, backgroundColor: ColorManager.backGround),
       //scaffoldBackgroundColor
       scaffoldBackgroundColor:
           isDarkTheme ? const Color(0xFF00001a) : const Color(0xFFFFFFFF),
-      primaryColor: Colors.blue,
+      primaryColor: ColorManager.backGround,
       //colorScheme
       colorScheme: ThemeData().colorScheme.copyWith(
             secondary:
