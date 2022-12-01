@@ -108,7 +108,12 @@ class _LoginPageState extends State<LoginPage> {
                       TextButton(
                         /// todo
                         onPressed: () {},
-                        child: const Text('Register'),
+                        child: Text(
+                          'Register',
+                          style: TextStyle(
+                            color: ColorManager.primary,
+                          ),
+                        ),
                       )
                     ],
                   ),

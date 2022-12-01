@@ -5,6 +5,9 @@ import 'color_manager.dart';
 class Styles {
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return ThemeData(
+      fontFamily: 'pro',
+      primaryColorDark: Colors.blueAccent,
+      primaryColorLight: ColorManager.primary,
       appBarTheme:
           AppBarTheme(elevation: 0.0, backgroundColor: ColorManager.backGround),
       //scaffoldBackgroundColor
