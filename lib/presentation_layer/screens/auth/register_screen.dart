@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lab_store/core/style/color_manager.dart';
+import 'package:lab_store/presentation_layer/widgets/back_widget.dart';
 
 import '../../../core/route_manager/app_routes.dart';
 import '../../widgets/default_form_field.dart';
@@ -35,6 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        leading: BackWidget(),
       ),
       backgroundColor: ColorManager.backGround,
       body: SingleChildScrollView(

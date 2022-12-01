@@ -84,7 +84,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 20.0,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context, AppRoutes.forgetPasswordScreenRoute);
+                    },
                     child: const Align(
                       alignment: Alignment.topRight,
                       child: Text('Forget your password?'),

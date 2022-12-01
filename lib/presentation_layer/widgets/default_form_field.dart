@@ -37,7 +37,10 @@ class DefaultTextField extends StatelessWidget {
         focusNode: fNode,
         keyboardType: inputType,
         decoration: InputDecoration(
-          label: Text(label),
+          label: Text(
+            label,
+            style: TextStyle(color: ColorManager.primary),
+          ),
           hintText: hint,
           border: InputBorder.none,
         ),
