@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lab_store/core/style/color_manager.dart';
 
 import '../../../core/route_manager/app_routes.dart';
-import '../../../core/style/color_manager.dart';
 import '../../widgets/default_form_field.dart';
 import '../../widgets/main_button.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _nameFocusNode = FocusNode();
   final _emailFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
 
@@ -25,6 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _nameController.dispose();
   }
 
   @override
@@ -48,19 +51,31 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 20,
                   ),
                   Text(
-                    'Login',
+                    'Register',
                     style: Theme.of(context)
                         .textTheme
                         .titleLarge!
                         .copyWith(fontSize: 34, fontWeight: FontWeight.w700),
                   ),
                   const SizedBox(
-                    height: 50.0,
+                    height: 40.0,
+                  ),
+                  DefaultTextField(
+                    controller: _nameController,
+                    fNode: _nameFocusNode,
+                    onComplete: () =>
+                        FocusScope.of(context).requestFocus(_emailFocusNode),
+                    inputType: TextInputType.name,
+                    label: 'Name',
+                    hint: 'Enter your Name',
+                    validateMessage: 'Enter valid Name',
+                  ),
+                  const SizedBox(
+                    height: 15.0,
                   ),
                   DefaultTextField(
                     controller: _emailController,
                     fNode: _emailFocusNode,
-                    // onChanged: value.updateEmail,
                     onComplete: () =>
                         FocusScope.of(context).requestFocus(_passwordFocusNode),
                     inputType: TextInputType.emailAddress,
@@ -69,50 +84,29 @@ class _LoginScreenState extends State<LoginScreen> {
                     validateMessage: 'Enter valid Email',
                   ),
                   const SizedBox(
-                    height: 20.0,
+                    height: 15.0,
                   ),
                   DefaultTextField(
                     controller: _passwordController,
                     fNode: _passwordFocusNode,
-                    // onChanged: value.updatePassword,
                     inputType: TextInputType.visiblePassword,
                     label: 'Password',
                     hint: 'Enter your password',
                     validateMessage: 'Enter valid password',
                   ),
                   const SizedBox(
-                    height: 20.0,
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: const Align(
-                      alignment: Alignment.topRight,
-                      child: Text('Forget your password?'),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30.0,
-                  ),
-                  MainButton(
-                    text: 'LOGIN',
-                    onTap: () {
-                      /// Todo on function
-                      if (_formKey.currentState!.validate()) {}
-                    },
-                  ),
-                  const SizedBox(
-                    height: 3,
+                    height: 3.0,
                   ),
                   Row(
                     children: [
-                      const Text('I have\'t an account?'),
+                      const Text('I already have an account?'),
                       TextButton(
                         onPressed: () {
                           Navigator.pushNamed(
-                              context, AppRoutes.registerScreenRoute);
+                              context, AppRoutes.loginScreenRoute);
                         },
                         child: Text(
-                          'Register',
+                          'Login',
                           style: TextStyle(
                             color: ColorManager.primary,
                           ),
@@ -121,12 +115,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   const SizedBox(
-                    height: 130,
+                    height: 25.0,
+                  ),
+                  MainButton(
+                    text: 'SIGN UP',
+                    onTap: () async {
+                      if (_formKey.currentState!.validate()) {}
+                    },
+                  ),
+                  const SizedBox(
+                    height: 110,
                   ),
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      'Or login with social account',
+                      'Or sign up with social account',
                       style: Theme.of(context)
                           .textTheme
                           .titleMedium!
