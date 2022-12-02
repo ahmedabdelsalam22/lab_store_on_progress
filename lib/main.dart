@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
             title: 'Lab Store',
             theme: Styles.themeData(value.getDarkTheme, context),
             home: const LoginScreen(),
-            initialRoute: AppRoutes.loginScreenRoute,
+            initialRoute: AppRoutes.btmNavScreenRoute,
             onGenerateRoute: AppRouter.onGenerateRoute,
           );
         },
