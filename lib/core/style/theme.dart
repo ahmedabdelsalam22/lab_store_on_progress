@@ -6,6 +6,7 @@ class Styles {
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return ThemeData(
       fontFamily: 'pro',
+      primarySwatch: Colors.red,
       primaryColorDark: Colors.blueAccent,
       primaryColorLight: ColorManager.primary,
       appBarTheme:
