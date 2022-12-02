@@ -3,6 +3,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:lab_store/data_layer/models/dummy_data.dart';
 
+import '../../core/route_manager/app_routes.dart';
 import '../../core/style/color_manager.dart';
 
 class NewProductList extends StatelessWidget {
@@ -32,7 +33,11 @@ class NewProductList extends StatelessWidget {
     }
 
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context, rootNavigator: true).pushNamed(
+            AppRoutes.productDetailsScreenRoute,
+            arguments: dummyProduct);
+      },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 7),
         child: Column(
