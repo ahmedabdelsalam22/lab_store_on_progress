@@ -52,7 +52,7 @@ class SaleItemList extends StatelessWidget {
                         height: 210,
                         child: Image(
                           image: AssetImage(dummyProduct.imgUrl),
-                          fit: BoxFit.fill,
+                          fit: BoxFit.scaleDown,
                         ),
                       ),
                       Padding(

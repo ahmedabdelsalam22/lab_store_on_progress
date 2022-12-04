@@ -7,9 +7,9 @@ class HomeSwiper extends StatelessWidget {
   const HomeSwiper({Key? key}) : super(key: key);
 
   static List<String>? offerImages = [
-    AppAssets.swiperCartOne,
-    AppAssets.swiperCartTwo,
-    AppAssets.swiperCartThree,
+    AppAssets.swiperCardOne,
+    AppAssets.swiperCardTwo,
+    AppAssets.swiperCardThree,
   ];
 
   @override

@@ -51,7 +51,7 @@ class NewProductList extends StatelessWidget {
                   height: 210,
                   child: Image(
                     image: AssetImage(dummyProduct.imgUrl),
-                    fit: BoxFit.fill,
+                    fit: BoxFit.scaleDown,
                   ),
                 ),
                 if (dummyProduct.discountValue !=
@@ -108,7 +108,11 @@ class NewProductList extends StatelessWidget {
             ),
             Text(
               dummyProduct.title,
-              style: const TextStyle(color: Colors.grey),
+              maxLines: 2,
+              style: const TextStyle(
+                color: Colors.grey,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             const SizedBox(
               height: 3,
