@@ -1,5 +1,3 @@
-import '../../core/app_strings_manager/app_assets.dart';
-
 class Product {
   final String id;
   final String title;
@@ -25,27 +23,27 @@ class Product {
 List<Product> dummyProducts = [
   Product(
     id: '1',
-    title: 'T-shirt',
+    title: 'Hp 840 G5',
     price: 15,
-    imgUrl: AppAssets.fashion1,
-    category: 'Clothes',
+    imgUrl: 'assets/images/category/lap.JPEG',
+    category: 'Laptop',
     discountValue: 20,
-    oldPrice: 35,
+    oldPrice: 7000,
   ),
   Product(
-    id: '1',
-    title: 'T-shirt',
-    price: 35,
-    imgUrl: AppAssets.fashion2,
-    category: 'Clothes',
-    oldPrice: 35,
+    id: '2',
+    title: 'fujitsu b24-8 te pro',
+    price: 1000,
+    imgUrl: 'assets/images/category/monitor.PNG',
+    category: 'Monitor',
+    oldPrice: 1000,
   ),
   Product(
-      id: '1',
-      title: 'T-shirt',
-      price: 35,
-      imgUrl: AppAssets.fashion3,
-      category: 'Clothes',
-      oldPrice: 60,
-      discountValue: 15),
+    id: '3',
+    title: 'Opto Mechanical Gaming Keyboard',
+    price: 180,
+    imgUrl: 'assets/images/category/keyboard.JPEG',
+    category: 'Keyboard',
+    oldPrice: 180,
+  ),
 ];
