@@ -12,7 +12,7 @@ class NewProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 320,
+      height: 350,
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
@@ -106,12 +106,15 @@ class NewProductList extends StatelessWidget {
             const SizedBox(
               height: 3,
             ),
-            Text(
-              dummyProduct.title,
-              maxLines: 2,
-              style: const TextStyle(
-                color: Colors.grey,
-                overflow: TextOverflow.ellipsis,
+            SizedBox(
+              width: 145,
+              child: Text(
+                dummyProduct.title,
+                maxLines: 2,
+                style: const TextStyle(
+                  color: Colors.grey,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
             const SizedBox(
@@ -138,7 +141,7 @@ class NewProductList extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        '${dummyProduct.oldPrice! * (dummyProduct.discountValue) / 100}\$',
+                        '${dummyProduct.oldPrice * (dummyProduct.discountValue) / 100}\$',
                         style: TextStyle(color: ColorManager.primary),
                       ),
                     ],
