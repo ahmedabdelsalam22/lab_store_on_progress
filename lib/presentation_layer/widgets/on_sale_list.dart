@@ -11,8 +11,8 @@ class SaleItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 320,
+    return Container(
+      height: 350,
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
@@ -105,9 +105,14 @@ class SaleItemList extends StatelessWidget {
                   const SizedBox(
                     height: 3,
                   ),
-                  Text(
-                    dummyProduct.title,
-                    style: const TextStyle(color: Colors.grey),
+                  SizedBox(
+                    width: 145,
+                    child: Text(
+                      dummyProduct.title,
+                      style: const TextStyle(color: Colors.grey),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
+                    ),
                   ),
                   const SizedBox(
                     height: 3,
