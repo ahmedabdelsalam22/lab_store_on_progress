@@ -1,42 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:lab_store/data_layer/models/dummy_data.dart';
 
-import '../../core/route_manager/app_routes.dart';
 import '../../core/style/color_manager.dart';
+import '../../data_layer/models/product_model.dart';
 
-class NewProductList extends StatelessWidget {
-  const NewProductList({Key? key}) : super(key: key);
+class productItemBuilder extends StatelessWidget {
+  final ProductModel productModel;
+  const productItemBuilder({
+    Key? key,
+    required this.productModel,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 350,
-      child: ListView.builder(
-        physics: const BouncingScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return productItemBuilder(dummyProducts[index], context);
-        },
-        itemCount: dummyProducts.length,
-      ),
-    );
-  }
-
-  Widget productItemBuilder(Product dummyProduct, BuildContext context) {
     final size = MediaQuery.of(context).size;
-
-    bool isFav = false;
-    void changeFavIcon() {
-      isFav = !isFav;
-    }
 
     return InkWell(
       onTap: () {
-        Navigator.of(context, rootNavigator: true).pushNamed(
+        /*  Navigator.of(context, rootNavigator: true).pushNamed(
             AppRoutes.productDetailsScreenRoute,
-            arguments: dummyProduct);
+            arguments: dummyProduct);*/
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 7),
@@ -48,14 +32,13 @@ class NewProductList extends StatelessWidget {
               children: [
                 SizedBox(
                   width: 145,
-                  height: 210,
+                  height: 170,
                   child: Image(
-                    image: AssetImage(dummyProduct.imgUrl),
+                    image: AssetImage(productModel.imageUrl),
                     fit: BoxFit.scaleDown,
                   ),
                 ),
-                if (dummyProduct.discountValue !=
-                    0) //not show items which have not discount
+                if (productModel.isOnSale)
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
@@ -66,7 +49,7 @@ class NewProductList extends StatelessWidget {
                       ),
                       child: Center(
                           child: Text(
-                        '-${dummyProduct.discountValue}%',
+                        'on Sale',
                       )),
                     ),
                   ),
@@ -84,7 +67,7 @@ class NewProductList extends StatelessWidget {
                             shape: BoxShape.circle,
                             color: Colors.grey.withOpacity(0.5)),
                         child: Icon(
-                          isFav ? IconlyBold.heart : IconlyLight.heart,
+                          IconlyLight.heart,
                           size: 30,
                           color: ColorManager.primary,
                         ),
@@ -96,7 +79,8 @@ class NewProductList extends StatelessWidget {
             ),
             RatingBarIndicator(
               itemSize: 25.0,
-              rating: dummyProduct.rate?.toDouble() ?? 4.0,
+              //   rating: dummyProduct.rate?.toDouble() ?? 4.0,
+              rating: productModel.rate!.toDouble(),
               itemBuilder: (context, _) => const Icon(
                 Icons.star,
                 color: Colors.amber,
@@ -109,7 +93,7 @@ class NewProductList extends StatelessWidget {
             SizedBox(
               width: 145,
               child: Text(
-                dummyProduct.title,
+                productModel.title,
                 maxLines: 2,
                 style: const TextStyle(
                   color: Colors.grey,
@@ -121,7 +105,7 @@ class NewProductList extends StatelessWidget {
               height: 3,
             ),
             Text(
-              dummyProduct.category,
+              productModel.productCategoryName,
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(
@@ -129,28 +113,18 @@ class NewProductList extends StatelessWidget {
             ),
             Row(
               children: [
-                if (dummyProduct.discountValue != 0)
-                  Row(
-                    children: [
-                      Text('${dummyProduct.oldPrice}\$',
-                          style: const TextStyle(
-                            decoration: TextDecoration.lineThrough,
-                            color: Colors.grey,
-                          )),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        '${dummyProduct.oldPrice * (dummyProduct.discountValue) / 100}\$',
-                        style: TextStyle(color: ColorManager.primary),
-                      ),
-                    ],
-                  ),
-                if (dummyProduct.discountValue == 0)
-                  Text(
-                    '${dummyProduct.oldPrice}\$',
-                    style: TextStyle(color: ColorManager.primary),
-                  ),
+                Text('${productModel.price}\$',
+                    style: const TextStyle(
+                      decoration: TextDecoration.lineThrough,
+                      color: Colors.grey,
+                    )),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  '${productModel.salePrice}\$',
+                  style: TextStyle(color: ColorManager.primary),
+                ),
               ],
             ),
           ],

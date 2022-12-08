@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:lab_store/core/style/color_manager.dart';
 
 class BackWidget extends StatelessWidget {
   const BackWidget({Key? key}) : super(key: key);
@@ -13,7 +14,8 @@ class BackWidget extends StatelessWidget {
       },
       child: Icon(
         IconlyLight.arrowLeft2,
-        color: Colors.black,
+        color: ColorManager.primary,
+        size: 25,
       ),
     );
   }
