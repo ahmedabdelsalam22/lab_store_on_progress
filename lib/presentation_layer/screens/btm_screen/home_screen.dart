@@ -30,8 +30,8 @@ class HomeScreen extends StatelessWidget {
               subtitle: 'Super summer sale',
               onPressed: () {
                 Navigator.of(context, rootNavigator: true).pushNamed(
-                    AppRoutes.viewOnSaleProductsScreenRoute,
-                    arguments: productProvider);
+                  AppRoutes.viewOnSaleProductsScreenRoute,
+                );
               },
             ),
             SizedBox(
@@ -40,8 +40,9 @@ class HomeScreen extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return SaleItemBuilder(
-                    productModel: productProvider.getOnSaleProducts[index],
+                  return ChangeNotifierProvider.value(
+                    value: productProvider.getOnSaleProducts[index],
+                    child: SaleItemBuilder(),
                   );
                 },
                 itemCount: productProvider.getOnSaleProducts.length < 4
@@ -63,8 +64,9 @@ class HomeScreen extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return productItemBuilder(
-                    productModel: productProvider.getAllProducts[index],
+                  return ChangeNotifierProvider.value(
+                    value: productProvider.getAllProducts[index],
+                    child: productItemBuilder(),
                   );
                 },
                 itemCount: productProvider.getAllProducts.length < 4
