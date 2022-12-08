@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/style/color_manager.dart';
 import '../../data_layer/models/product_model.dart';
 
 class productItemBuilder extends StatelessWidget {
-  final ProductModel productModel;
   const productItemBuilder({
     Key? key,
-    required this.productModel,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final productModel = Provider.of<ProductModel>(context);
 
     return InkWell(
       onTap: () {
