@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:lab_store/data_layer/models/dummy_data.dart';
 import 'package:lab_store/presentation_layer/screens/auth/forget_password_screen.dart';
 import 'package:lab_store/presentation_layer/screens/auth/login_screen.dart';
 import 'package:lab_store/presentation_layer/screens/auth/register_screen.dart';
 import 'package:lab_store/presentation_layer/screens/btm_screen/btm_nav_screen.dart';
+import 'package:lab_store/presentation_layer/screens/btm_screen/view_on_sale_product_screen.dart';
 import 'package:lab_store/presentation_layer/screens/details_screen.dart';
+
+import '../../data_layer/models/product_model.dart';
 
 class AppRoutes {
   static const String loginScreenRoute = 'loginScreen';
@@ -12,6 +14,8 @@ class AppRoutes {
   static const String forgetPasswordScreenRoute = 'forgetPasswordScreen';
   static const String btmNavScreenRoute = 'btmNavScreen';
   static const String productDetailsScreenRoute = 'productDetailsScreen';
+  static const String viewOnSaleProductsScreenRoute =
+      'viewOnSaleProductsScreen';
 }
 
 class AppRouter {
@@ -35,9 +39,15 @@ class AppRouter {
             builder: (_) => BtmNavScreen(), settings: settings);
 
       case AppRoutes.productDetailsScreenRoute:
-        final product = settings.arguments as Product;
+        final product = settings.arguments as ProductModel;
         return MaterialPageRoute(
           builder: (_) => ProductDetailsScreen(product: product),
+          settings: settings,
+        );
+
+      case AppRoutes.viewOnSaleProductsScreenRoute:
+        return MaterialPageRoute(
+          builder: (_) => ViewAllOnSaleProductsScreen(),
           settings: settings,
         );
 

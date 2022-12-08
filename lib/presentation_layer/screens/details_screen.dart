@@ -3,12 +3,12 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../../core/style/color_manager.dart';
-import '../../data_layer/models/dummy_data.dart';
+import '../../data_layer/models/product_model.dart';
 import '../widgets/drop_down_menu.dart';
 import '../widgets/main_button.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  final Product product;
+  final ProductModel product;
 
   const ProductDetailsScreen({
     super.key,
@@ -61,7 +61,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            widget.product.imgUrl,
+            widget.product.imageUrl,
             height: size.height * 0.5,
             width: double.infinity,
             fit: BoxFit.fill,
@@ -110,7 +110,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.product.category,
+                      widget.product.productCategoryName,
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontWeight: FontWeight.bold,
                           color: ColorManager.primary),
