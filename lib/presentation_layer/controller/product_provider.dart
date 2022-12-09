@@ -11,6 +11,15 @@ class ProductProvider with ChangeNotifier {
     return _products.where((element) => element.isOnSale).toList();
   }
 
+  List<ProductModel> findByCategory(String categoryName) {
+    List<ProductModel> categoryList = _products
+        .where((element) => element.productCategoryName
+            .toLowerCase()
+            .contains(categoryName.toLowerCase()))
+        .toList();
+    return categoryList;
+  }
+
   List<ProductModel> _products = [
     ProductModel(
       id: 'Hp 840 G5',
@@ -27,7 +36,7 @@ class ProductProvider with ChangeNotifier {
       title: 'fujitsu b24-8 te pro',
       salePrice: 5000,
       imageUrl: 'assets/images/category/monitor.PNG',
-      productCategoryName: 'Monitor',
+      productCategoryName: 'Monitors',
       price: 7000,
       isOnSale: false,
       isDiscount: true,

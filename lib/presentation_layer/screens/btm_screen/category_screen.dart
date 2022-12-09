@@ -67,17 +67,29 @@ class CategoriesScreen extends StatelessWidget {
         body: TabBarView(
           children: [
             //Laptop
-            TabBarViewBody(),
+            TabBarViewBody(
+              categoryName: 'Laptop',
+            ),
             //Monitors
-            TabBarViewBody(),
+            TabBarViewBody(
+              categoryName: 'Monitors',
+            ),
             //Pc Case
-            TabBarViewBody(),
+            TabBarViewBody(
+              categoryName: 'Pc Case',
+            ),
             //Bags
-            TabBarViewBody(),
+            TabBarViewBody(
+              categoryName: 'Bags',
+            ),
             //Mouses
-            TabBarViewBody(),
+            TabBarViewBody(
+              categoryName: 'Mouses',
+            ),
             //Hard Drives
-            TabBarViewBody(),
+            TabBarViewBody(
+              categoryName: 'Hard Drives',
+            ),
           ],
         ),
       ),
