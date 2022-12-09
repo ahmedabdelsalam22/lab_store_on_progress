@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lab_store/core/route_manager/app_routes.dart';
+import 'package:lab_store/presentation_layer/controller/cart_provider.dart';
 import 'package:lab_store/presentation_layer/controller/product_provider.dart';
 import 'package:lab_store/presentation_layer/controller/theme_provider.dart';
 import 'package:lab_store/presentation_layer/screens/auth/login_screen.dart';
@@ -43,6 +44,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => ProductProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider())
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, value, child) {

@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/style/color_manager.dart';
 import '../../data_layer/models/product_model.dart';
+import '../controller/cart_provider.dart';
 
 class BuildCatItem extends StatelessWidget {
   const BuildCatItem({
@@ -15,6 +16,8 @@ class BuildCatItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productModel = Provider.of<ProductModel>(context);
+
+    final cartProvider = Provider.of<CartProvider>(context);
 
     return Padding(
       padding: const EdgeInsets.all(5.0),
@@ -38,10 +41,13 @@ class BuildCatItem extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextWidget(
-                    text: productModel.title,
-                    color: Colors.black,
-                    textSize: 20,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: TextWidget(
+                      text: productModel.title,
+                      color: Colors.black,
+                      textSize: 20,
+                    ),
                   ),
                   RatingBarIndicator(
                     itemSize: 20.0,
@@ -79,7 +85,6 @@ class BuildCatItem extends StatelessWidget {
                     ),
                 ],
               ),
-              const Spacer(),
               InkWell(
                 onTap: () {},
                 child: Container(
@@ -90,7 +95,28 @@ class BuildCatItem extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: Icon(
                       IconlyLight.heart,
-                      size: 30,
+                      size: 26,
+                      color: ColorManager.primary,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              InkWell(
+                onTap: () {
+                  cartProvider.addProductToCart(productId: productModel.id);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey.withOpacity(0.5)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Icon(
+                      IconlyLight.buy,
+                      size: 26,
                       color: ColorManager.primary,
                     ),
                   ),
