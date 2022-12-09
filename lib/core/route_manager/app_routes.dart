@@ -43,7 +43,7 @@ class AppRouter {
       case AppRoutes.productDetailsScreenRoute:
         final product = settings.arguments as ProductModel;
         return MaterialPageRoute(
-          builder: (_) => ProductDetailsScreen(product: product),
+          builder: (_) => ProductDetailsScreen(productModel: product),
           settings: settings,
         );
 
