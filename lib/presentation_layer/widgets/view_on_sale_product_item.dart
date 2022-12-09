@@ -38,10 +38,13 @@ class ViewOnSaleProductItem extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextWidget(
-                    text: productModel.title,
-                    color: Colors.black,
-                    textSize: 20,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.6,
+                    child: TextWidget(
+                      text: productModel.title,
+                      color: Colors.black,
+                      textSize: 20,
+                    ),
                   ),
                   TextWidget(
                     text: productModel.productCategoryName,
@@ -60,23 +63,28 @@ class ViewOnSaleProductItem extends StatelessWidget {
                   SizedBox(
                     height: 5,
                   ),
-                  Row(
-                    children: [
-                      Text('${productModel.price}\$',
-                          style: const TextStyle(
-                            decoration: TextDecoration.lineThrough,
-                            color: Colors.grey,
-                          )),
-                      SizedBox(
-                        width: 2,
-                      ),
-                      TextWidget(
-                        text: '${productModel.salePrice}\$',
-                        color: ColorManager.primary,
-                        textSize: 15,
-                      ),
-                    ],
-                  ),
+                  if (productModel.isDiscount!)
+                    Row(
+                      children: [
+                        Text('${productModel.price}\$',
+                            style: const TextStyle(
+                              decoration: TextDecoration.lineThrough,
+                              color: Colors.grey,
+                            )),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          '${productModel.salePrice}\$',
+                          style: TextStyle(color: ColorManager.primary),
+                        ),
+                      ],
+                    ),
+                  if (!productModel.isDiscount!)
+                    Text(
+                      '${productModel.salePrice}\$',
+                      style: TextStyle(color: ColorManager.primary),
+                    ),
                 ],
               ),
               const Spacer(),

@@ -20,6 +20,7 @@ class ProductProvider with ChangeNotifier {
       productCategoryName: 'Laptop',
       price: 7000,
       isOnSale: true,
+      isDiscount: true,
     ),
     ProductModel(
       id: 'fujitsu b24-8 te pro',
@@ -29,6 +30,7 @@ class ProductProvider with ChangeNotifier {
       productCategoryName: 'Monitor',
       price: 7000,
       isOnSale: false,
+      isDiscount: true,
     ),
     ProductModel(
       id: 'Opto Mechanical Gaming Keyboard',
@@ -38,6 +40,7 @@ class ProductProvider with ChangeNotifier {
       imageUrl: 'assets/images/category/keyboard.JPEG',
       productCategoryName: 'Keyboard',
       isOnSale: false,
+      isDiscount: true,
     ),
     ProductModel(
       id: 'Apple MacBook Pro',
@@ -47,6 +50,7 @@ class ProductProvider with ChangeNotifier {
       imageUrl: 'assets/images/category/mackbook.jpg',
       productCategoryName: 'Laptop',
       isOnSale: true,
+      isDiscount: true,
     ),
     ProductModel(
       id: 'Dragon mouse',
@@ -56,6 +60,7 @@ class ProductProvider with ChangeNotifier {
       imageUrl: 'assets/images/category/mouse.jpg',
       productCategoryName: 'Mouses',
       isOnSale: false,
+      isDiscount: false,
     ),
     ProductModel(
       id: 'ssd drive 120G',
@@ -65,6 +70,7 @@ class ProductProvider with ChangeNotifier {
       imageUrl: 'assets/images/category/hard.jpg',
       productCategoryName: 'Hard Drives',
       isOnSale: false,
+      isDiscount: false,
     ),
     ProductModel(
       id: 'Gaming Pc Case',
@@ -74,6 +80,7 @@ class ProductProvider with ChangeNotifier {
       imageUrl: 'assets/images/category/case.jpeg',
       productCategoryName: 'Pc Case',
       isOnSale: true,
+      isDiscount: false,
     ),
     ProductModel(
       id: 'LabTop Bag',
@@ -83,6 +90,7 @@ class ProductProvider with ChangeNotifier {
       imageUrl: 'assets/images/category/bag.jpg',
       productCategoryName: 'Bags',
       isOnSale: true,
+      isDiscount: false,
     ),
   ];
 }
