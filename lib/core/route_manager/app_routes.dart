@@ -7,6 +7,7 @@ import 'package:lab_store/presentation_layer/screens/btm_screen/view_on_sale_pro
 import 'package:lab_store/presentation_layer/screens/details_screen.dart';
 
 import '../../data_layer/models/product_model.dart';
+import '../../presentation_layer/screens/btm_screen/view_all_product_screen.dart';
 
 class AppRoutes {
   static const String loginScreenRoute = 'loginScreen';
@@ -16,6 +17,7 @@ class AppRoutes {
   static const String productDetailsScreenRoute = 'productDetailsScreen';
   static const String viewOnSaleProductsScreenRoute =
       'viewOnSaleProductsScreen';
+  static const String viewAllProductsScreenRoute = 'viewAllProductsScreen';
 }
 
 class AppRouter {
@@ -48,6 +50,12 @@ class AppRouter {
       case AppRoutes.viewOnSaleProductsScreenRoute:
         return MaterialPageRoute(
           builder: (_) => ViewAllOnSaleProductsScreen(),
+          settings: settings,
+        );
+
+      case AppRoutes.viewAllProductsScreenRoute:
+        return MaterialPageRoute(
+          builder: (_) => ViewAllProductScreen(),
           settings: settings,
         );
 

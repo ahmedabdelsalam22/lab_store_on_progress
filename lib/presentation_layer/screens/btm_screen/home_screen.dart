@@ -53,7 +53,11 @@ class HomeScreen extends StatelessWidget {
             ViewAllWidget(
               title: 'All Products',
               subtitle: 'You\'ve never seen it before!',
-              onPressed: () => debugPrint('view all btn'),
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).pushNamed(
+                  AppRoutes.viewAllProductsScreenRoute,
+                );
+              },
             ),
             const SizedBox(
               height: 20,
