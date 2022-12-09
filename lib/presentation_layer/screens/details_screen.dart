@@ -73,15 +73,35 @@ class ProductDetailsScreen extends StatelessWidget {
                 InkWell(
                   onTap: () {},
                   child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.grey.withOpacity(0.5)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Icon(
+                        IconlyLight.heart,
+                        size: 30,
+                        color: ColorManager.primary,
+                      ),
                     ),
-                    child: Icon(
-                      IconlyLight.heart,
-                      size: 30,
-                      color: ColorManager.primary,
+                  ),
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.grey.withOpacity(0.5)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Icon(
+                        IconlyLight.buy,
+                        size: 30,
+                        color: ColorManager.primary,
+                      ),
                     ),
                   ),
                 ),

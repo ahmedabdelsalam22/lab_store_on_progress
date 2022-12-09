@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../../core/route_manager/app_routes.dart';
 import '../../core/style/color_manager.dart';
 import '../../data_layer/models/product_model.dart';
+import '../controller/cart_provider.dart';
 
 class ViewAllProductItem extends StatelessWidget {
   const ViewAllProductItem({
@@ -16,6 +17,8 @@ class ViewAllProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productModel = Provider.of<ProductModel>(context);
+
+    final cartProvider = Provider.of<CartProvider>(context);
 
     return InkWell(
       onTap: () {
@@ -66,7 +69,7 @@ class ViewAllProductItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.6,
+                      width: MediaQuery.of(context).size.width * 0.5,
                       child: TextWidget(
                         text: productModel.title,
                         color: Colors.black,
@@ -116,7 +119,9 @@ class ViewAllProductItem extends StatelessWidget {
                 ),
                 const Spacer(),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    cartProvider.addProductToCart(productId: productModel.id);
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -125,7 +130,26 @@ class ViewAllProductItem extends StatelessWidget {
                       padding: const EdgeInsets.all(4.0),
                       child: Icon(
                         IconlyLight.heart,
-                        size: 30,
+                        size: 28,
+                        color: ColorManager.primary,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.grey.withOpacity(0.5)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Icon(
+                        IconlyLight.buy,
+                        size: 28,
                         color: ColorManager.primary,
                       ),
                     ),
