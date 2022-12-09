@@ -4,6 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:lab_store/data_layer/models/product_model.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/route_manager/app_routes.dart';
 import '../../core/style/color_manager.dart';
 
 class SaleItemBuilder extends StatelessWidget {
@@ -18,9 +19,10 @@ class SaleItemBuilder extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        /* Navigator.of(context, rootNavigator: true).pushNamed(
-            AppRoutes.productDetailsScreenRoute,
-            arguments: dummyProduct);*/
+        Navigator.of(context, rootNavigator: true).pushNamed(
+          AppRoutes.productDetailsScreenRoute,
+          arguments: productModel,
+        );
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 5),

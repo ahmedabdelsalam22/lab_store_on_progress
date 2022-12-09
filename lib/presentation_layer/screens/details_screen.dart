@@ -7,20 +7,11 @@ import '../../data_layer/models/product_model.dart';
 import '../widgets/drop_down_menu.dart';
 import '../widgets/main_button.dart';
 
-class ProductDetailsScreen extends StatefulWidget {
-  final ProductModel product;
+class ProductDetailsScreen extends StatelessWidget {
+  final ProductModel productModel;
 
-  const ProductDetailsScreen({
-    super.key,
-    required this.product,
-  });
-
-  @override
-  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
-}
-
-class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
-  bool isFavorite = false;
+  const ProductDetailsScreen({Key? key, required this.productModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +23,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
-          widget.product.title,
+          productModel.title,
           style: Theme.of(context)
               .textTheme
               .headline4!
@@ -61,10 +52,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            widget.product.imageUrl,
+            productModel.imageUrl,
             height: size.height * 0.5,
             width: double.infinity,
-            fit: BoxFit.fill,
+            fit: BoxFit.scaleDown,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
@@ -80,11 +71,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ),
                 const Spacer(),
                 InkWell(
-                  onTap: () {
-                    setState(() {
-                      isFavorite = !isFavorite;
-                    });
-                  },
+                  onTap: () {},
                   child: Container(
                     height: 40,
                     width: 40,
@@ -92,7 +79,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
-                      isFavorite ? IconlyBold.heart : IconlyLight.heart,
+                      IconlyLight.heart,
                       size: 30,
                       color: ColorManager.primary,
                     ),
@@ -110,37 +97,43 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.product.productCategoryName,
+                      productModel.productCategoryName,
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontWeight: FontWeight.bold,
                           color: ColorManager.primary),
                     ),
                     Text(
-                      widget.product.title,
+                      productModel.title,
                       style: Theme.of(context).textTheme.caption!.copyWith(),
                     ),
                   ],
                 ),
-                Text(
-                  '${widget.product.price.toString()}\$',
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      fontWeight: FontWeight.bold, color: ColorManager.primary),
-                ),
+                if (productModel.isDiscount!)
+                  Row(
+                    children: [
+                      Text('${productModel.price}\$',
+                          style: const TextStyle(
+                            decoration: TextDecoration.lineThrough,
+                            color: Colors.grey,
+                          )),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        '${productModel.salePrice}\$',
+                        style: TextStyle(color: ColorManager.primary),
+                      ),
+                    ],
+                  ),
+                if (!productModel.isDiscount!)
+                  Text(
+                    '${productModel.salePrice}\$',
+                    style: TextStyle(color: ColorManager.primary),
+                  ),
               ],
             ),
           ),
           ratingBar(),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-            child: Text(
-              'Lorem ipsum dolor sit amet, consectetur adipisicing elit,'
-              ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-              ' Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris '
-              'nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.',
-              overflow: TextOverflow.ellipsis,
-              maxLines: 3,
-            ),
-          ),
           const Spacer(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
