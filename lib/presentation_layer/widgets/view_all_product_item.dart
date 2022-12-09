@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 import '../../core/style/color_manager.dart';
 import '../../data_layer/models/product_model.dart';
 
-class ViewOnSaleProductItem extends StatelessWidget {
-  const ViewOnSaleProductItem({
+class ViewAllProductItem extends StatelessWidget {
+  const ViewAllProductItem({
     Key? key,
   }) : super(key: key);
 
@@ -26,11 +26,30 @@ class ViewOnSaleProductItem extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
-              Image(
-                image: AssetImage(productModel.imageUrl),
-                height: 80,
-                width: 80,
-                fit: BoxFit.scaleDown,
+              Stack(
+                children: [
+                  Image(
+                    image: AssetImage(productModel.imageUrl),
+                    height: 80,
+                    width: 80,
+                    fit: BoxFit.scaleDown,
+                  ),
+                  if (productModel.isOnSale)
+                    Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: Container(
+                        padding: const EdgeInsets.all(3.0),
+                        decoration: BoxDecoration(
+                          color: ColorManager.primary,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Center(
+                            child: Text(
+                          'on Sale',
+                        )),
+                      ),
+                    ),
+                ],
               ),
               const SizedBox(
                 width: 20,
@@ -38,10 +57,13 @@ class ViewOnSaleProductItem extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextWidget(
-                    text: productModel.title,
-                    color: Colors.black,
-                    textSize: 20,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.6,
+                    child: TextWidget(
+                      text: productModel.title,
+                      color: Colors.black,
+                      textSize: 20,
+                    ),
                   ),
                   TextWidget(
                     text: productModel.productCategoryName,
