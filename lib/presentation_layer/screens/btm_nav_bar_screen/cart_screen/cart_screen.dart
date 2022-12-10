@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../provider/cart_provider.dart';
 import '../../../widgets/empty_screen.dart';
+import 'cart_widget.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class CartScreen extends StatelessWidget {
     final cartProvider = Provider.of<CartProvider>(context);
     final cartItemsList = cartProvider.getCartItems.values.toList();
 
-    return cartItemsList.isEmpty
+    return !cartItemsList.isEmpty
         ? Center(
             child: EmptyScreen(
               imPath: 'assets/images/cart.png',
@@ -20,10 +21,6 @@ class CartScreen extends StatelessWidget {
               buttonText: 'shop now!',
             ),
           )
-        : Scaffold(
-            body: Center(
-              child: Text('cart'),
-            ),
-          );
+        : CartWidget();
   }
 }
