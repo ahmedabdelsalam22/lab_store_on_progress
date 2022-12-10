@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import '../../core/style/color_manager.dart';
-import '../../data_layer/models/product_model.dart';
-import '../widgets/drop_down_menu.dart';
-import '../widgets/main_button.dart';
+import '../../../../core/style/color_manager.dart';
+import '../../../../data_layer/models/product_model.dart';
+import '../../../widgets/main_button.dart';
+import 'drop_down_menu.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   final ProductModel productModel;

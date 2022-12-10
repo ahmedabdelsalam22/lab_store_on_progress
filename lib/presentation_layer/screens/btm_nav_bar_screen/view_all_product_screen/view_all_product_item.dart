@@ -4,13 +4,13 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:lab_store/presentation_layer/widgets/text_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/route_manager/app_routes.dart';
-import '../../core/style/color_manager.dart';
-import '../../data_layer/models/product_model.dart';
-import '../controller/cart_provider.dart';
+import '../../../../core/route_manager/app_routes.dart';
+import '../../../../core/style/color_manager.dart';
+import '../../../../data_layer/models/product_model.dart';
+import '../../../provider/cart_provider.dart';
 
-class ViewOnSaleProductItem extends StatelessWidget {
-  const ViewOnSaleProductItem({
+class ViewAllProductItem extends StatelessWidget {
+  const ViewAllProductItem({
     Key? key,
   }) : super(key: key);
 
@@ -37,11 +37,30 @@ class ViewOnSaleProductItem extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Image(
-                  image: AssetImage(productModel.imageUrl),
-                  height: 80,
-                  width: 80,
-                  fit: BoxFit.scaleDown,
+                Stack(
+                  children: [
+                    Image(
+                      image: AssetImage(productModel.imageUrl),
+                      height: 80,
+                      width: 80,
+                      fit: BoxFit.scaleDown,
+                    ),
+                    if (productModel.isOnSale)
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Container(
+                          padding: const EdgeInsets.all(3.0),
+                          decoration: BoxDecoration(
+                            color: ColorManager.primary,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Center(
+                              child: Text(
+                            'on Sale',
+                          )),
+                        ),
+                      ),
+                  ],
                 ),
                 const SizedBox(
                   width: 20,
@@ -98,8 +117,11 @@ class ViewOnSaleProductItem extends StatelessWidget {
                       ),
                   ],
                 ),
+                const Spacer(),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    cartProvider.addProductToCart(productId: productModel.id);
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -118,9 +140,7 @@ class ViewOnSaleProductItem extends StatelessWidget {
                   width: 5,
                 ),
                 InkWell(
-                  onTap: () {
-                    cartProvider.addProductToCart(productId: productModel.id);
-                  },
+                  onTap: () {},
                   child: Container(
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,

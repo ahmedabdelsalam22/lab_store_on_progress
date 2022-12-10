@@ -1,7 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/app_strings_manager/app_assets.dart';
+import '../../../../core/app_strings_manager/app_assets.dart';
 
 class HomeSwiper extends StatelessWidget {
   const HomeSwiper({Key? key}) : super(key: key);

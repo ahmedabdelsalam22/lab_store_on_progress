@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:lab_store/core/route_manager/app_routes.dart';
-import 'package:lab_store/presentation_layer/controller/product_provider.dart';
-import 'package:lab_store/presentation_layer/widgets/view_all_widget.dart';
+import 'package:lab_store/presentation_layer/screens/btm_nav_bar_screen/home_screen/view_all_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../widgets/home_on_sale_list.dart';
-import '../../widgets/home_products_list.dart';
-import '../../widgets/home_swiper.dart';
+import '../../../provider/product_provider.dart';
+import 'home_on_sale_list.dart';
+import 'home_products_list.dart';
+import 'home_swiper.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

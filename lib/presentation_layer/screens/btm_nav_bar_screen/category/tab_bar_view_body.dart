@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lab_store/data_layer/models/product_model.dart';
-import 'package:lab_store/presentation_layer/controller/product_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../../../provider/product_provider.dart';
 import 'build_categ_item.dart';
 
 class TabBarViewBody extends StatelessWidget {

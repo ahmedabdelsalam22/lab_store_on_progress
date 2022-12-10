@@ -3,9 +3,9 @@ import 'package:lab_store/core/style/color_manager.dart';
 import 'package:lab_store/presentation_layer/widgets/back_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../../data_layer/models/product_model.dart';
-import '../../controller/product_provider.dart';
-import '../../widgets/view_on_sale_product_item.dart';
+import '../../../../data_layer/models/product_model.dart';
+import '../../../provider/product_provider.dart';
+import 'view_on_sale_product_item.dart';
 
 class ViewAllOnSaleProductsScreen extends StatelessWidget {
   const ViewAllOnSaleProductsScreen({Key? key}) : super(key: key);

@@ -4,9 +4,9 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:lab_store/presentation_layer/widgets/text_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/style/color_manager.dart';
-import '../../data_layer/models/product_model.dart';
-import '../controller/cart_provider.dart';
+import '../../../../core/style/color_manager.dart';
+import '../../../../data_layer/models/product_model.dart';
+import '../../../provider/cart_provider.dart';
 
 class BuildCatItem extends StatelessWidget {
   const BuildCatItem({

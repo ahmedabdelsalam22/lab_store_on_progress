@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:lab_store/presentation_layer/screens/btm_screen/setting_screen.dart';
+import 'package:lab_store/presentation_layer/screens/btm_nav_bar_screen/setting_screen.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 import '../../../core/style/color_manager.dart';
-import 'cart_screen.dart';
-import 'category_screen.dart';
+import 'cart_screen/cart_screen.dart';
+import 'category/category_screen.dart';
 import 'favorites_screen.dart';
-import 'home_screen.dart';
+import 'home_screen/home_screen.dart';
 
 class BtmNavScreen extends StatelessWidget {
   BtmNavScreen({Key? key}) : super(key: key);

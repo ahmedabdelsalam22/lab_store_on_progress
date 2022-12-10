@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/style/color_manager.dart';
-import '../../widgets/custom_tapbar_button.dart';
-import '../../widgets/tab_bar_view_body.dart';
-import '../../widgets/text_widget.dart';
+import '../../../../core/style/color_manager.dart';
+import '../../../widgets/text_widget.dart';
+import 'custom_tapbar_button.dart';
+import 'tab_bar_view_body.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
