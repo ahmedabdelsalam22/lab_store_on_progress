@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lab_store/core/route_manager/app_routes.dart';
-import 'package:lab_store/presentation_layer/controller/cart_provider.dart';
-import 'package:lab_store/presentation_layer/controller/product_provider.dart';
-import 'package:lab_store/presentation_layer/controller/theme_provider.dart';
+import 'package:lab_store/presentation_layer/provider/cart_provider.dart';
+import 'package:lab_store/presentation_layer/provider/product_provider.dart';
+import 'package:lab_store/presentation_layer/provider/theme_provider.dart';
 import 'package:lab_store/presentation_layer/screens/auth/login_screen.dart';
 import 'package:provider/provider.dart';
 

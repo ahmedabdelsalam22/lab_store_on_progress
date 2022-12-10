@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:lab_store/data_layer/models/product_model.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/route_manager/app_routes.dart';
-import '../../core/style/color_manager.dart';
+import '../../../../core/route_manager/app_routes.dart';
+import '../../../../core/style/color_manager.dart';
+import '../../../../data_layer/models/product_model.dart';
 
-class SaleItemBuilder extends StatelessWidget {
-  const SaleItemBuilder({
+class productItemBuilder extends StatelessWidget {
+  const productItemBuilder({
     Key? key,
   }) : super(key: key);
 
@@ -25,7 +25,7 @@ class SaleItemBuilder extends StatelessWidget {
         );
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 7),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -40,20 +40,21 @@ class SaleItemBuilder extends StatelessWidget {
                     fit: BoxFit.scaleDown,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    padding: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                      color: ColorManager.primary,
-                      borderRadius: BorderRadius.circular(16),
+                if (productModel.isOnSale)
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      padding: const EdgeInsets.all(5.0),
+                      decoration: BoxDecoration(
+                        color: ColorManager.primary,
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Center(
+                          child: Text(
+                        'on Sale',
+                      )),
                     ),
-                    child: Center(
-                        child: Text(
-                      'on Sale',
-                    )),
                   ),
-                ),
                 Positioned(
                   left: size.width * 0.23,
                   bottom: size.height * 0.011,
@@ -80,7 +81,7 @@ class SaleItemBuilder extends StatelessWidget {
             ),
             RatingBarIndicator(
               itemSize: 25.0,
-              //  rating: dummyProduct.rate?.toDouble() ?? 4.0,
+              //   rating: dummyProduct.rate?.toDouble() ?? 4.0,
               rating: productModel.rate!.toDouble(),
               itemBuilder: (context, _) => const Icon(
                 Icons.star,
@@ -95,9 +96,11 @@ class SaleItemBuilder extends StatelessWidget {
               width: 145,
               child: Text(
                 productModel.title,
-                style: const TextStyle(color: Colors.grey),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 3,
+                maxLines: 2,
+                style: const TextStyle(
+                  color: Colors.grey,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
             const SizedBox(
@@ -137,4 +140,28 @@ class SaleItemBuilder extends StatelessWidget {
       ),
     );
   }
+
+/* ratingBar(int? rate) {
+    return SizedBox(
+      child: Row(
+        children: [
+          RatingBar.builder(
+            itemSize: 23,
+            initialRating: rate!.toDouble(),
+            minRating: 1,
+            direction: Axis.horizontal,
+            allowHalfRating: true,
+            itemCount: 5,
+            itemBuilder: (context, _) => const Icon(
+              Icons.star,
+              color: Colors.amber,
+            ),
+            onRatingUpdate: (rating) {},
+          ),
+          Text('$rate'),
+        ],
+      ),
+    );
+  }*/
+
 }

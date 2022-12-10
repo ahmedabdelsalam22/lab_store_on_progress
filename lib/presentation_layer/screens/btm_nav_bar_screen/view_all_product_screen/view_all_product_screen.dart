@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lab_store/data_layer/models/product_model.dart';
-import 'package:lab_store/presentation_layer/controller/product_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/style/color_manager.dart';
-import '../../widgets/back_widget.dart';
-import '../../widgets/view_all_product_item.dart';
+import '../../../../core/style/color_manager.dart';
+import '../../../provider/product_provider.dart';
+import '../../../widgets/back_widget.dart';
+import 'view_all_product_item.dart';
 
 class ViewAllProductScreen extends StatelessWidget {
   const ViewAllProductScreen({Key? key}) : super(key: key);
