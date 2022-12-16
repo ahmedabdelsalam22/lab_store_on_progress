@@ -1,9 +1,12 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:lab_store/presentation_layer/screens/btm_nav_bar_screen/setting_screen.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/style/color_manager.dart';
+import '../../provider/cart_provider.dart';
 import 'cart_screen/cart_screen.dart';
 import 'category/category_screen.dart';
 import 'favorites_screen.dart';
@@ -80,7 +83,22 @@ class BtmNavScreen extends StatelessWidget {
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(IconlyLight.buy),
+        icon: Consumer<CartProvider>(
+          builder: (_, myCart, ch) {
+            return Badge(
+              toAnimate: true,
+              shape: BadgeShape.circle,
+              badgeColor: Colors.red,
+              borderRadius: BorderRadius.circular(8),
+              position: BadgePosition.topEnd(top: -7, end: -7),
+              badgeContent: Text(
+                myCart.getCartItems.length.toString(),
+                style: const TextStyle(color: Colors.white),
+              ),
+              child: Icon(IconlyLight.buy),
+            );
+          },
+        ),
         title: "Cart",
         activeColorPrimary: ColorManager.primary,
         inactiveColorPrimary: Colors.grey,
