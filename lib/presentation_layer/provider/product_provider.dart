@@ -20,6 +20,10 @@ class ProductProvider with ChangeNotifier {
     return categoryList;
   }
 
+  ProductModel findProductById(String productId) {
+    return _products.firstWhere((element) => element.id == productId);
+  }
+
   List<ProductModel> _products = [
     ProductModel(
       id: 'Hp 840 G5',
