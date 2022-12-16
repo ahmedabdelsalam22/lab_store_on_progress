@@ -20,6 +20,7 @@ class ProductDetailsScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     final cartProvider = Provider.of<CartProvider>(context);
+    bool isInCart = cartProvider.getCartItems.containsKey(productModel.id);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -166,7 +167,9 @@ class ProductDetailsScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
             child: MainButton(
-              text: 'ADD TO CART', // or Text('InCart')
+              text: isInCart
+                  ? 'Already in cart '
+                  : 'ADD TO CART', // or Text('InCart')
               onTap: () {
                 cartProvider.addProductToCart(productId: productModel.id);
               },

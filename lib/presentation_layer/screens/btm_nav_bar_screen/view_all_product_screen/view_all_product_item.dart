@@ -19,6 +19,7 @@ class ViewAllProductItem extends StatelessWidget {
     final productModel = Provider.of<ProductModel>(context);
 
     final cartProvider = Provider.of<CartProvider>(context);
+    bool isInCart = cartProvider.getCartItems.containsKey(productModel.id);
 
     return InkWell(
       onTap: () {
@@ -150,7 +151,7 @@ class ViewAllProductItem extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: Icon(
-                        IconlyLight.buy,
+                        isInCart ? IconlyBold.buy : IconlyLight.buy,
                         size: 28,
                         color: ColorManager.primary,
                       ),
