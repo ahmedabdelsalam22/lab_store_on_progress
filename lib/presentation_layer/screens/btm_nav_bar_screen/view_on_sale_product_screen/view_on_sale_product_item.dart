@@ -19,6 +19,7 @@ class ViewOnSaleProductItem extends StatelessWidget {
     final productModel = Provider.of<ProductModel>(context);
 
     final cartProvider = Provider.of<CartProvider>(context);
+    bool isInCart = cartProvider.getCartItems.containsKey(productModel.id);
 
     return InkWell(
       onTap: () {
@@ -125,12 +126,13 @@ class ViewOnSaleProductItem extends StatelessWidget {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.grey.withOpacity(0.5)),
+                      shape: BoxShape.circle,
+                      color: Colors.grey.withOpacity(0.5),
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: Icon(
-                        IconlyLight.buy,
+                        isInCart ? IconlyBold.buy : IconlyLight.buy,
                         size: 28,
                         color: ColorManager.primary,
                       ),
