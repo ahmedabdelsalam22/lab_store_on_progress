@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/style/color_manager.dart';
 import '../../../../data_layer/models/cart_model.dart';
+import '../../../provider/cart_provider.dart';
 import '../../../widgets/text_widget.dart';
 
 class CartListItemWidget extends StatelessWidget {
@@ -17,6 +18,7 @@ class CartListItemWidget extends StatelessWidget {
     final cartModel = Provider.of<CartModel>(context);
     final getCurrentProduct =
         productProvider.findProductById(cartModel.productId);
+    final cartProvider = Provider.of<CartProvider>(context);
 
     return Padding(
       padding: const EdgeInsets.all(5.0),
@@ -74,7 +76,7 @@ class CartListItemWidget extends StatelessWidget {
                   ),
                   RatingBarIndicator(
                     itemSize: 20.0,
-                    rating: 4,
+                    rating: getCurrentProduct.rate!.toDouble(),
                     itemBuilder: (context, _) => const Icon(
                       Icons.star,
                       color: Colors.amber,
@@ -113,7 +115,7 @@ class CartListItemWidget extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  //TODO REMOVE ONE ITEM FROM CART
+                  cartProvider.removeOneItem(productId: cartModel.productId);
                 },
                 child: Container(
                   decoration: BoxDecoration(

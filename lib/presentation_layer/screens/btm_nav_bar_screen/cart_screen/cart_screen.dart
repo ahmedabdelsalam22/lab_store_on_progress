@@ -44,7 +44,7 @@ class CartScreen extends StatelessWidget {
                       title: 'Empty your cart',
                       subtitle: 'Are you sure?',
                       fct: () async {
-                        //TODO FUNCTION
+                        cartProvider.clearCart();
                       },
                       context: context,
                     );

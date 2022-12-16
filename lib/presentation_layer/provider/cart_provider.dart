@@ -16,4 +16,17 @@ class CartProvider with ChangeNotifier {
     );
     notifyListeners();
   }
+
+  // remove one item from cart
+  Future<void> removeOneItem({
+    required String productId,
+  }) async {
+    _cartItems.remove(productId);
+    notifyListeners();
+  }
+
+  void clearCart() {
+    _cartItems.clear();
+    notifyListeners();
+  }
 }
