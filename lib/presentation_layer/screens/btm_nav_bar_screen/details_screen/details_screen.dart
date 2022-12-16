@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/style/color_manager.dart';
 import '../../../../data_layer/models/product_model.dart';
+import '../../../provider/cart_provider.dart';
 import '../../../widgets/main_button.dart';
 import 'drop_down_menu.dart';
 
@@ -16,6 +18,8 @@ class ProductDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
+    final cartProvider = Provider.of<CartProvider>(context);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -71,7 +75,9 @@ class ProductDetailsScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    //TODO add product to favorites screen
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -90,7 +96,9 @@ class ProductDetailsScreen extends StatelessWidget {
                   width: 5,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    //TODO PAYMENT METHODE
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -98,7 +106,7 @@ class ProductDetailsScreen extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: Icon(
-                        IconlyLight.buy,
+                        Icons.credit_card,
                         size: 30,
                         color: ColorManager.primary,
                       ),
@@ -158,8 +166,10 @@ class ProductDetailsScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
             child: MainButton(
-              text: 'ADD TO CART',
-              onTap: () {},
+              text: 'ADD TO CART', // or Text('InCart')
+              onTap: () {
+                cartProvider.addProductToCart(productId: productModel.id);
+              },
             ),
           ),
         ],

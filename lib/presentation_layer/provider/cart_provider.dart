@@ -14,5 +14,6 @@ class CartProvider with ChangeNotifier {
         productId: productId,
       ),
     );
+    notifyListeners();
   }
 }

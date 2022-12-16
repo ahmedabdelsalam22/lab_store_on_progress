@@ -99,7 +99,9 @@ class ViewOnSaleProductItem extends StatelessWidget {
                   ],
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    //TODO add product to favorites screen
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,

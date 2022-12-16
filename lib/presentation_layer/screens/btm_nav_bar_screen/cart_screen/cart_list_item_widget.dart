@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:lab_store/presentation_layer/provider/product_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/style/color_manager.dart';
+import '../../../../data_layer/models/cart_model.dart';
 import '../../../widgets/text_widget.dart';
 
 class CartListItemWidget extends StatelessWidget {
@@ -10,6 +13,11 @@ class CartListItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productProvider = Provider.of<ProductProvider>(context);
+    final cartModel = Provider.of<CartModel>(context);
+    final getCurrentProduct =
+        productProvider.findProductById(cartModel.productId);
+
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Material(
@@ -23,12 +31,12 @@ class CartListItemWidget extends StatelessWidget {
               Stack(
                 children: [
                   Image(
-                    image: AssetImage('assets/images/category/lap.JPEG'),
+                    image: AssetImage(getCurrentProduct.imageUrl),
                     height: 80,
                     width: 80,
                     fit: BoxFit.scaleDown,
                   ),
-                  /*  if (productModel.isOnSale)
+                  if (getCurrentProduct.isOnSale)
                     Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: Container(
@@ -39,10 +47,10 @@ class CartListItemWidget extends StatelessWidget {
                         ),
                         child: Center(
                             child: Text(
-                              'on Sale',
-                            )),
+                          'on Sale',
+                        )),
                       ),
-                    ),*/
+                    ),
                 ],
               ),
               const SizedBox(
@@ -54,13 +62,13 @@ class CartListItemWidget extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: TextWidget(
-                      text: 'title',
+                      text: getCurrentProduct.title,
                       color: Colors.black,
                       textSize: 20,
                     ),
                   ),
                   TextWidget(
-                    text: 'productCategoryName',
+                    text: getCurrentProduct.productCategoryName,
                     color: Colors.grey,
                     textSize: 15,
                   ),
@@ -76,10 +84,10 @@ class CartListItemWidget extends StatelessWidget {
                   SizedBox(
                     height: 5,
                   ),
-                  /*if (productModel.isDiscount!)
+                  if (getCurrentProduct.isDiscount!)
                     Row(
                       children: [
-                        Text('${productModel.price}\$',
+                        Text('${getCurrentProduct.price}\$',
                             style: const TextStyle(
                               decoration: TextDecoration.lineThrough,
                               color: Colors.grey,
@@ -88,19 +96,18 @@ class CartListItemWidget extends StatelessWidget {
                           width: 5,
                         ),
                         Text(
-                          '${productModel.salePrice}\$',
+                          '${getCurrentProduct.salePrice}\$',
                           style: TextStyle(color: ColorManager.primary),
                         ),
                       ],
                     ),
-                  if (!productModel.isDiscount!)
+                  if (!getCurrentProduct.isDiscount!)
                     Text(
-                      '${productModel.salePrice}\$',
+                      '${getCurrentProduct.salePrice}\$',
                       style: TextStyle(color: ColorManager.primary),
-                    ),*/
+                    ),
                 ],
               ),
-              const Spacer(),
               SizedBox(
                 width: 5,
               ),
@@ -116,7 +123,28 @@ class CartListItemWidget extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: Icon(
                       IconlyLight.delete,
-                      size: 28,
+                      size: 26,
+                      color: ColorManager.primary,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 2.5,
+              ),
+              InkWell(
+                onTap: () {
+                  //TODO PAYMENT METHODE
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey.withOpacity(0.5)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Icon(
+                      Icons.credit_card,
+                      size: 26,
                       color: ColorManager.primary,
                     ),
                   ),

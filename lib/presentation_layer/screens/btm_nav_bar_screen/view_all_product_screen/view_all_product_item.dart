@@ -120,7 +120,7 @@ class ViewAllProductItem extends StatelessWidget {
                 const Spacer(),
                 InkWell(
                   onTap: () {
-                    cartProvider.addProductToCart(productId: productModel.id);
+                    // TODO add product to favorites screen
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -140,7 +140,9 @@ class ViewAllProductItem extends StatelessWidget {
                   width: 5,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    cartProvider.addProductToCart(productId: productModel.id);
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
