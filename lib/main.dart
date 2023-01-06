@@ -4,7 +4,6 @@ import 'package:lab_store/core/route_manager/app_routes.dart';
 import 'package:lab_store/presentation_layer/provider/cart_provider.dart';
 import 'package:lab_store/presentation_layer/provider/product_provider.dart';
 import 'package:lab_store/presentation_layer/provider/theme_provider.dart';
-import 'package:lab_store/presentation_layer/screens/auth/login_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'core/style/theme.dart';
@@ -52,7 +51,6 @@ class _MyAppState extends State<MyApp> {
             debugShowCheckedModeBanner: false,
             title: 'Lab Store',
             theme: Styles.themeData(value.getDarkTheme, context),
-            home: const LoginScreen(),
             initialRoute: AppRoutes.btmNavScreenRoute,
             onGenerateRoute: AppRouter.onGenerateRoute,
           );
