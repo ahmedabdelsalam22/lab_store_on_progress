@@ -121,7 +121,7 @@ class ViewAllProductItem extends StatelessWidget {
                 const Spacer(),
                 InkWell(
                   onTap: () {
-                    // TODO add product to favorites screen
+                    // TODO ADD TO FAVORITES LIST
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -142,7 +142,11 @@ class ViewAllProductItem extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    cartProvider.addProductToCart(productId: productModel.id);
+                    if (isInCart) {
+                      cartProvider.removeOneItem(productId: productModel.id);
+                    } else {
+                      cartProvider.addProductToCart(productId: productModel.id);
+                    }
                   },
                   child: Container(
                     decoration: BoxDecoration(

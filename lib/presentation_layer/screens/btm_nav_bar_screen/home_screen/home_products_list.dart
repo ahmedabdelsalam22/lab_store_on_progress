@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/route_manager/app_routes.dart';
 import '../../../../core/style/color_manager.dart';
 import '../../../../data_layer/models/product_model.dart';
+import '../../../provider/cart_provider.dart';
 
 class productItemBuilder extends StatelessWidget {
   const productItemBuilder({
@@ -16,6 +17,9 @@ class productItemBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final productModel = Provider.of<ProductModel>(context);
+
+    final cartProvider = Provider.of<CartProvider>(context);
+    bool isInCart = cartProvider.getCartItems.containsKey(productModel.id);
 
     return InkWell(
       onTap: () {
@@ -70,6 +74,35 @@ class productItemBuilder extends StatelessWidget {
                             color: Colors.grey.withOpacity(0.5)),
                         child: Icon(
                           IconlyLight.heart,
+                          size: 30,
+                          color: ColorManager.primary,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: size.width * 0.12,
+                  bottom: size.height * 0.01,
+                  child: InkWell(
+                    onTap: () {
+                      if (isInCart) {
+                        cartProvider.removeOneItem(productId: productModel.id);
+                      } else {
+                        cartProvider.addProductToCart(
+                            productId: productModel.id);
+                      }
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.grey.withOpacity(0.5)),
+                        child: Icon(
+                          isInCart ? IconlyBold.buy : IconlyLight.buy,
                           size: 30,
                           color: ColorManager.primary,
                         ),
