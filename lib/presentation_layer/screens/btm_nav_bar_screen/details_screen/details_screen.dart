@@ -70,14 +70,16 @@ class ProductDetailsScreen extends StatelessWidget {
                 Expanded(
                   child: DropDownMenuComponent(
                     hint: 'Size',
-                    onChanged: (String? value) {},
+                    onChanged: (String? value) {
+                      // TODO HANDLE PRODUCT SIZE
+                    },
                     items: const ['S', 'M', 'L', 'XL', 'XXL'],
                   ),
                 ),
                 const Spacer(),
                 InkWell(
                   onTap: () {
-                    //TODO add product to favorites screen
+                    // TODO ADD TO FAVORITES
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -98,7 +100,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    //TODO PAYMENT METHODE
+                    //TODO Payment Integration process
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -168,10 +170,14 @@ class ProductDetailsScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
             child: MainButton(
               text: isInCart
-                  ? 'Already in cart '
+                  ? 'Already in cart'
                   : 'ADD TO CART', // or Text('InCart')
               onTap: () {
-                cartProvider.addProductToCart(productId: productModel.id);
+                if (isInCart) {
+                  cartProvider.removeOneItem(productId: productModel.id);
+                } else {
+                  cartProvider.addProductToCart(productId: productModel.id);
+                }
               },
             ),
           ),

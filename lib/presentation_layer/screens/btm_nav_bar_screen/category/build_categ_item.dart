@@ -18,6 +18,7 @@ class BuildCatItem extends StatelessWidget {
     final productModel = Provider.of<ProductModel>(context);
 
     final cartProvider = Provider.of<CartProvider>(context);
+    bool isInCart = cartProvider.getCartItems.containsKey(productModel.id);
 
     return Padding(
       padding: const EdgeInsets.all(5.0),
@@ -106,7 +107,11 @@ class BuildCatItem extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  cartProvider.addProductToCart(productId: productModel.id);
+                  if (isInCart) {
+                    cartProvider.removeOneItem(productId: productModel.id);
+                  } else {
+                    cartProvider.addProductToCart(productId: productModel.id);
+                  }
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -115,7 +120,7 @@ class BuildCatItem extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Icon(
-                      IconlyLight.buy,
+                      isInCart ? IconlyBold.buy : IconlyLight.buy,
                       size: 26,
                       color: ColorManager.primary,
                     ),

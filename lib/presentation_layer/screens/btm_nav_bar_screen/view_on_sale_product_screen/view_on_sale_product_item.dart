@@ -101,7 +101,7 @@ class ViewOnSaleProductItem extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    //TODO add product to favorites screen
+                    // TODO add to favorites list
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -122,7 +122,11 @@ class ViewOnSaleProductItem extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    cartProvider.addProductToCart(productId: productModel.id);
+                    if (isInCart) {
+                      cartProvider.removeOneItem(productId: productModel.id);
+                    } else {
+                      cartProvider.addProductToCart(productId: productModel.id);
+                    }
                   },
                   child: Container(
                     decoration: BoxDecoration(
