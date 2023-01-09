@@ -9,7 +9,7 @@ import '../../../core/style/color_manager.dart';
 import '../../provider/cart_provider.dart';
 import 'cart_screen/cart_screen.dart';
 import 'category/category_screen.dart';
-import 'favorites_screen.dart';
+import 'fav_screen/favorites_screen.dart';
 import 'home_screen/home_screen.dart';
 
 class BtmNavScreen extends StatelessWidget {
