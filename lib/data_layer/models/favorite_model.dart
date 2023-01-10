@@ -1,4 +1,6 @@
-class FavoriteModel {
+import 'package:flutter/material.dart';
+
+class FavoriteModel with ChangeNotifier {
   final String id, productId;
 
   FavoriteModel({
