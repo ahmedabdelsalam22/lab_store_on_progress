@@ -17,4 +17,17 @@ class FavoriteProvider with ChangeNotifier {
     );
     notifyListeners();
   }
+
+  // remove one item from cart
+  Future<void> removeOneItem({
+    required String productId,
+  }) async {
+    _favoriteItems.remove(productId);
+    notifyListeners();
+  }
+
+  void clearCart() {
+    _favoriteItems.clear();
+    notifyListeners();
+  }
 }
