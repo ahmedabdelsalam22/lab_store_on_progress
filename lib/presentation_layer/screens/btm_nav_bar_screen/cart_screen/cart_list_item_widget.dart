@@ -15,9 +15,12 @@ class CartListItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productProvider = Provider.of<ProductProvider>(context);
+
     final cartModel = Provider.of<CartModel>(context);
+
     final getCurrentProduct =
         productProvider.findProductById(cartModel.productId);
+
     final cartProvider = Provider.of<CartProvider>(context);
 
     return Padding(
