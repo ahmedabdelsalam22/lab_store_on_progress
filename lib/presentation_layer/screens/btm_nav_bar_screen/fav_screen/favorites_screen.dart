@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
 import '../../../../core/style/color_manager.dart';
+import '../../../widgets/check_out_widget.dart';
 import '../../../widgets/global_methode.dart';
 import '../../../widgets/text_widget.dart';
 
@@ -39,6 +40,11 @@ class FavoritesScreen extends StatelessWidget {
               color: ColorManager.primary,
             ),
           ),
+        ],
+      ),
+      body: Column(
+        children: [
+          CheckOutWidget(),
         ],
       ),
     );
