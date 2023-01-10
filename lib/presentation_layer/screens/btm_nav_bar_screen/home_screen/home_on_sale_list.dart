@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:lab_store/data_layer/models/product_model.dart';
+import 'package:lab_store/presentation_layer/provider/favorite_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/route_manager/app_routes.dart';
@@ -20,6 +21,10 @@ class SaleItemBuilder extends StatelessWidget {
 
     final cartProvider = Provider.of<CartProvider>(context);
     bool isInCart = cartProvider.getCartItems.containsKey(productModel.id);
+
+    final favoriteProvider = Provider.of<FavoriteProvider>(context);
+    bool isInFav =
+        favoriteProvider.getFavoriteItems.containsKey(productModel.id);
 
     return InkWell(
       onTap: () {
@@ -63,7 +68,13 @@ class SaleItemBuilder extends StatelessWidget {
                   bottom: size.height * 0.011,
                   child: InkWell(
                     onTap: () {
-                      // TODO ADD ITEM TP FAVORITES
+                      if (isInFav) {
+                        favoriteProvider.removeOneItem(
+                            productId: productModel.id);
+                      } else {
+                        favoriteProvider.addProductToFavorite(
+                            productId: productModel.id);
+                      }
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -74,7 +85,7 @@ class SaleItemBuilder extends StatelessWidget {
                             shape: BoxShape.circle,
                             color: Colors.grey.withOpacity(0.5)),
                         child: Icon(
-                          IconlyLight.heart,
+                          isInFav ? IconlyBold.heart : IconlyLight.heart,
                           size: 30,
                           color: ColorManager.primary,
                         ),

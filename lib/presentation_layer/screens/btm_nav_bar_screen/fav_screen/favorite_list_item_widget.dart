@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:lab_store/data_layer/models/favorite_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/style/color_manager.dart';
+import '../../../provider/favorite_provider.dart';
+import '../../../provider/product_provider.dart';
 import '../../../widgets/text_widget.dart';
 
 class FavoriteListItemWidget extends StatelessWidget {
@@ -10,6 +14,15 @@ class FavoriteListItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productProvider = Provider.of<ProductProvider>(context);
+
+    final favModel = Provider.of<FavoriteModel>(context);
+
+    final getCurrentProduct =
+        productProvider.findProductById(favModel.productId);
+
+    final favoriteProvider = Provider.of<FavoriteProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Material(
@@ -23,12 +36,12 @@ class FavoriteListItemWidget extends StatelessWidget {
               Stack(
                 children: [
                   Image(
-                    image: AssetImage('assets/images/category/lap.JPEG'),
+                    image: AssetImage(getCurrentProduct.imageUrl),
                     height: 80,
                     width: 80,
                     fit: BoxFit.scaleDown,
                   ),
-                  /*  if (getCurrentProduct.isOnSale)
+                  if (getCurrentProduct.isOnSale)
                     Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: Container(
@@ -39,10 +52,10 @@ class FavoriteListItemWidget extends StatelessWidget {
                         ),
                         child: Center(
                             child: Text(
-                              'on Sale',
-                            )),
+                          'on Sale',
+                        )),
                       ),
-                    ),*/
+                    ),
                 ],
               ),
               const SizedBox(
@@ -54,20 +67,19 @@ class FavoriteListItemWidget extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: TextWidget(
-                      text: 'Title',
+                      text: getCurrentProduct.title,
                       color: Colors.black,
                       textSize: 20,
                     ),
                   ),
                   TextWidget(
-                    text: 'productCategoryName',
+                    text: getCurrentProduct.productCategoryName,
                     color: Colors.grey,
                     textSize: 15,
                   ),
                   RatingBarIndicator(
                     itemSize: 20.0,
-                    // rating: getCurrentProduct.rate!.toDouble(),
-                    rating: 3,
+                    rating: getCurrentProduct.rate!.toDouble(),
                     itemBuilder: (context, _) => const Icon(
                       Icons.star,
                       color: Colors.amber,
@@ -77,7 +89,7 @@ class FavoriteListItemWidget extends StatelessWidget {
                   SizedBox(
                     height: 5,
                   ),
-                  /*         if (getCurrentProduct.isDiscount!)
+                  if (getCurrentProduct.isDiscount!)
                     Row(
                       children: [
                         Text('${getCurrentProduct.price}\$',
@@ -94,11 +106,11 @@ class FavoriteListItemWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                  if (!getCurrentProduct.isDiscount!)*/
-                  Text(
-                    '${10}\$',
-                    style: TextStyle(color: ColorManager.primary),
-                  ),
+                  if (!getCurrentProduct.isDiscount!)
+                    Text(
+                      '${10}\$',
+                      style: TextStyle(color: ColorManager.primary),
+                    ),
                 ],
               ),
               SizedBox(
@@ -106,7 +118,7 @@ class FavoriteListItemWidget extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  /// TODO remove one item
+                  favoriteProvider.removeOneItem(productId: favModel.productId);
                 },
                 child: Container(
                   decoration: BoxDecoration(
