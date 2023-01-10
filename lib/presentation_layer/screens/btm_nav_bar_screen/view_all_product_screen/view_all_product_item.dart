@@ -8,6 +8,7 @@ import '../../../../core/route_manager/app_routes.dart';
 import '../../../../core/style/color_manager.dart';
 import '../../../../data_layer/models/product_model.dart';
 import '../../../provider/cart_provider.dart';
+import '../../../provider/favorite_provider.dart';
 
 class ViewAllProductItem extends StatelessWidget {
   const ViewAllProductItem({
@@ -20,6 +21,10 @@ class ViewAllProductItem extends StatelessWidget {
 
     final cartProvider = Provider.of<CartProvider>(context);
     bool isInCart = cartProvider.getCartItems.containsKey(productModel.id);
+
+    final favoriteProvider = Provider.of<FavoriteProvider>(context);
+    bool isInFav =
+        favoriteProvider.getFavoriteItems.containsKey(productModel.id);
 
     return InkWell(
       onTap: () {
@@ -121,7 +126,13 @@ class ViewAllProductItem extends StatelessWidget {
                 const Spacer(),
                 InkWell(
                   onTap: () {
-                    // TODO ADD TO FAVORITES LIST
+                    if (isInFav) {
+                      favoriteProvider.removeOneItem(
+                          productId: productModel.id);
+                    } else {
+                      favoriteProvider.addProductToFavorite(
+                          productId: productModel.id);
+                    }
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -130,7 +141,7 @@ class ViewAllProductItem extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: Icon(
-                        IconlyLight.heart,
+                        isInFav ? IconlyBold.heart : IconlyLight.heart,
                         size: 28,
                         color: ColorManager.primary,
                       ),
