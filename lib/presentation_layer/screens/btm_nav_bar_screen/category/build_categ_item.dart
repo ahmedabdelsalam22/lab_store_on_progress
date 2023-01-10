@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/style/color_manager.dart';
 import '../../../../data_layer/models/product_model.dart';
 import '../../../provider/cart_provider.dart';
+import '../../../provider/favorite_provider.dart';
 
 class BuildCatItem extends StatelessWidget {
   const BuildCatItem({
@@ -19,6 +20,10 @@ class BuildCatItem extends StatelessWidget {
 
     final cartProvider = Provider.of<CartProvider>(context);
     bool isInCart = cartProvider.getCartItems.containsKey(productModel.id);
+
+    final favoriteProvider = Provider.of<FavoriteProvider>(context);
+    bool isInFav =
+        favoriteProvider.getFavoriteItems.containsKey(productModel.id);
 
     return Padding(
       padding: const EdgeInsets.all(5.0),
@@ -87,7 +92,14 @@ class BuildCatItem extends StatelessWidget {
                 ],
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  if (isInFav) {
+                    favoriteProvider.removeOneItem(productId: productModel.id);
+                  } else {
+                    favoriteProvider.addProductToFavorite(
+                        productId: productModel.id);
+                  }
+                },
                 child: Container(
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -95,7 +107,7 @@ class BuildCatItem extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Icon(
-                      IconlyLight.heart,
+                      isInFav ? IconlyBold.heart : IconlyLight.heart,
                       size: 26,
                       color: ColorManager.primary,
                     ),

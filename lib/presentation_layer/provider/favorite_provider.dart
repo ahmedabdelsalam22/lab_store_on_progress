@@ -26,7 +26,7 @@ class FavoriteProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void clearCart() {
+  void clearFavorite() {
     _favoriteItems.clear();
     notifyListeners();
   }

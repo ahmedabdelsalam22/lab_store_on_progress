@@ -33,7 +33,7 @@ class FavoritesScreen extends StatelessWidget {
               elevation: 0.0,
               backgroundColor: ColorManager.backGround,
               title: TextWidget(
-                text: 'Favorites(2)',
+                text: 'Favorites(${favItemsList.length})',
                 color: ColorManager.primary,
                 textSize: 22,
                 isTitle: true,
@@ -45,7 +45,7 @@ class FavoritesScreen extends StatelessWidget {
                       title: 'Empty your Favorites',
                       subtitle: 'Are you sure?',
                       fct: () async {
-                        /// TODO delete all favorites items from favoritesScreen
+                        favoriteProvider.clearFavorite();
                       },
                       context: context,
                     );
