@@ -7,6 +7,7 @@ import '../../../../core/route_manager/app_routes.dart';
 import '../../../../core/style/color_manager.dart';
 import '../../../../data_layer/models/product_model.dart';
 import '../../../provider/cart_provider.dart';
+import '../../../provider/favorite_provider.dart';
 
 class productItemBuilder extends StatelessWidget {
   const productItemBuilder({
@@ -20,6 +21,10 @@ class productItemBuilder extends StatelessWidget {
 
     final cartProvider = Provider.of<CartProvider>(context);
     bool isInCart = cartProvider.getCartItems.containsKey(productModel.id);
+
+    final favoriteProvider = Provider.of<FavoriteProvider>(context);
+    bool isInFav =
+        favoriteProvider.getFavoriteItems.containsKey(productModel.id);
 
     return InkWell(
       onTap: () {
@@ -63,7 +68,15 @@ class productItemBuilder extends StatelessWidget {
                   left: size.width * 0.23,
                   bottom: size.height * 0.011,
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      if (isInFav) {
+                        favoriteProvider.removeOneItem(
+                            productId: productModel.id);
+                      } else {
+                        favoriteProvider.addProductToFavorite(
+                            productId: productModel.id);
+                      }
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
@@ -73,7 +86,7 @@ class productItemBuilder extends StatelessWidget {
                             shape: BoxShape.circle,
                             color: Colors.grey.withOpacity(0.5)),
                         child: Icon(
-                          IconlyLight.heart,
+                          isInFav ? IconlyBold.heart : IconlyLight.heart,
                           size: 30,
                           color: ColorManager.primary,
                         ),
