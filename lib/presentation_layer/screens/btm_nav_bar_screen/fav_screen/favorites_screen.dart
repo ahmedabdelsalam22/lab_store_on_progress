@@ -5,6 +5,7 @@ import '../../../../core/style/color_manager.dart';
 import '../../../widgets/check_out_widget.dart';
 import '../../../widgets/global_methode.dart';
 import '../../../widgets/text_widget.dart';
+import 'favorite_list_item_widget.dart';
 
 class FavoritesScreen extends StatelessWidget {
   const FavoritesScreen({Key? key}) : super(key: key);
@@ -45,6 +46,14 @@ class FavoritesScreen extends StatelessWidget {
       body: Column(
         children: [
           CheckOutWidget(),
+          Expanded(
+            child: ListView.builder(
+              itemBuilder: (ctx, index) {
+                return FavoriteListItemWidget();
+              },
+              itemCount: 12,
+            ),
+          ),
         ],
       ),
     );
