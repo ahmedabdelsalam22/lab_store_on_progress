@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:lab_store/presentation_layer/provider/favorite_provider.dart';
 import 'package:lab_store/presentation_layer/screens/btm_nav_bar_screen/setting_screen.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
@@ -84,7 +85,7 @@ class BtmNavScreen extends StatelessWidget {
       ),
       PersistentBottomNavBarItem(
         icon: Consumer<CartProvider>(
-          builder: (_, myCart, ch) {
+          builder: (_, myCart, child) {
             return Badge(
               toAnimate: true,
               shape: BadgeShape.circle,
@@ -104,7 +105,23 @@ class BtmNavScreen extends StatelessWidget {
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(IconlyLight.heart),
+        icon: Consumer<FavoriteProvider>(
+          builder: (_, myFav, child) {
+            return Badge(
+              toAnimate: true,
+              shape: BadgeShape.circle,
+              badgeColor: Colors.red,
+              borderRadius: BorderRadius.circular(8),
+              position: BadgePosition.topEnd(top: -7, end: -7),
+              badgeContent: Text(
+                myFav.getFavoriteItems.length.toString(),
+                style: const TextStyle(color: Colors.white),
+              ),
+              child: Icon(IconlyLight.heart),
+            );
+          },
+          child: Icon(IconlyLight.heart),
+        ),
         title: "Favorites",
         activeColorPrimary: ColorManager.primary,
         inactiveColorPrimary: Colors.grey,
