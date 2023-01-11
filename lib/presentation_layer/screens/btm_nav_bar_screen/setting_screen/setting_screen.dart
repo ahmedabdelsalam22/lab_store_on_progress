@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:lab_store/presentation_layer/screens/btm_nav_bar_screen/setting_screen/social_medial.dart';
 
 import '../../../../core/style/color_manager.dart';
@@ -88,7 +89,7 @@ class SettingScreen extends StatelessWidget {
                     icon: Icons.call,
                     color: Colors.black,
                     onPressed: () {
-                      /// use third party ( call Package)
+                      _callNumber();
                     }),
                 _listTiles(
                   title: 'Logout',
@@ -103,7 +104,7 @@ class SettingScreen extends StatelessWidget {
                 ),
                 TextWidget(
                   text: 'Follow us',
-                  color: ColorManager.primary,
+                  color: Colors.blue,
                   textSize: 18,
                 ),
                 const SizedBox(
@@ -119,6 +120,11 @@ class SettingScreen extends StatelessWidget {
   }
 
   //
+
+  _callNumber() async {
+    const number = '01113046200'; //set the number here
+    bool? res = await FlutterPhoneDirectCaller.callNumber(number);
+  }
 
   Widget _listTiles(
       {required String title,
