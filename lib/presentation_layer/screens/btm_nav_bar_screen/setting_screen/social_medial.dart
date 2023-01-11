@@ -7,25 +7,6 @@ class SocialMedia extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
-  }
-
-  void _launchURL(url) async {
-    await launchUrl(url) ? await launchUrl(url) : throw 'Could not launch $url';
-  }
-
-  Widget buildIcon(IconData icon, Uri url) {
-    return InkWell(
-      onTap: () => _launchURL(url),
-      child: Icon(
-        icon,
-        color: Colors.blue,
-        size: 35,
-      ),
-    );
-  }
-
-  Widget buildSocialMediaIcons() {
     return Padding(
       padding: const EdgeInsetsDirectional.only(start: 16),
       child: Row(
@@ -50,6 +31,21 @@ class SocialMedia extends StatelessWidget {
             Uri.parse('https://github.com/prAhmed20'),
           ),
         ],
+      ),
+    );
+  }
+
+  void _launchURL(url) async {
+    await launchUrl(url) ? await launchUrl(url) : throw 'Could not launch $url';
+  }
+
+  Widget buildIcon(IconData icon, Uri url) {
+    return InkWell(
+      onTap: () => _launchURL(url),
+      child: Icon(
+        icon,
+        color: Colors.blue,
+        size: 35,
       ),
     );
   }

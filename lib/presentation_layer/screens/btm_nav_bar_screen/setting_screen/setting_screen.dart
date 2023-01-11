@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:lab_store/presentation_layer/screens/btm_nav_bar_screen/setting_screen/social_medial.dart';
 
 import '../../../../core/style/color_manager.dart';
 import '../../../widgets/text_widget.dart';
@@ -97,6 +98,18 @@ class SettingScreen extends StatelessWidget {
                     ///Navigate to login screen
                   },
                 ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                ),
+                TextWidget(
+                  text: 'Follow us',
+                  color: ColorManager.primary,
+                  textSize: 18,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SocialMedia(),
               ],
             ),
           ),
