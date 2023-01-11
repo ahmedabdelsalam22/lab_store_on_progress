@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import '../../../widgets/text_widget.dart';
+
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);
 
@@ -33,6 +35,24 @@ class SettingScreen extends StatelessWidget {
                               print('my name is pressed');
                             }),
                     ]),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              TextWidget(
+                text: 'user email',
+                color: Colors.black,
+                textSize: 18,
+                // isTitle: true,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Divider(
+                thickness: 2,
+              ),
+              const SizedBox(
+                height: 20,
               ),
             ],
           ),
