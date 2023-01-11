@@ -80,7 +80,14 @@ class SettingScreen extends StatelessWidget {
                     icon: Icons.help,
                     color: Colors.black,
                     onPressed: () {
-                      ///Navigate to login screen
+                      ///Navigate to Technical support
+                    }),
+                _listTiles(
+                    title: 'Call us',
+                    icon: Icons.call,
+                    color: Colors.black,
+                    onPressed: () {
+                      /// use third party ( call Package)
                     }),
                 _listTiles(
                   title: 'Logout',
