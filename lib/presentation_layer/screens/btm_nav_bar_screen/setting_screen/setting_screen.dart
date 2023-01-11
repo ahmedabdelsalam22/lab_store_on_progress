@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 
 import '../../../widgets/text_widget.dart';
 
@@ -58,6 +59,30 @@ class SettingScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _listTiles(
+      {required String title,
+      String? subtitle,
+      required IconData icon,
+      required Function onPressed,
+      required Color color}) {
+    return ListTile(
+      title: Text(
+        title,
+        style: const TextStyle(fontSize: 24),
+      ),
+      subtitle: TextWidget(
+        text: subtitle ?? "",
+        color: color,
+        textSize: 18,
+      ),
+      leading: Icon(icon),
+      trailing: const Icon(IconlyLight.arrowRight2),
+      onTap: () {
+        onPressed();
+      },
     );
   }
 }
