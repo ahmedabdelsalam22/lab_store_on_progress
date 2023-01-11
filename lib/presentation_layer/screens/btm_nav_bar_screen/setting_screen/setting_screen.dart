@@ -104,7 +104,7 @@ class SettingScreen extends StatelessWidget {
                 ),
                 TextWidget(
                   text: 'Follow us',
-                  color: ColorManager.primary,
+                  color: Colors.blue,
                   textSize: 18,
                 ),
                 const SizedBox(
