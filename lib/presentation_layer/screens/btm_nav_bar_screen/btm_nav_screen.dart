@@ -13,9 +13,14 @@ import 'category/category_screen.dart';
 import 'fav_screen/favorites_screen.dart';
 import 'home_screen/home_screen.dart';
 
-class BtmNavScreen extends StatelessWidget {
+class BtmNavScreen extends StatefulWidget {
   BtmNavScreen({Key? key}) : super(key: key);
 
+  @override
+  State<BtmNavScreen> createState() => _BtmNavScreenState();
+}
+
+class _BtmNavScreenState extends State<BtmNavScreen> {
   final _controller = PersistentTabController();
 
   @override
