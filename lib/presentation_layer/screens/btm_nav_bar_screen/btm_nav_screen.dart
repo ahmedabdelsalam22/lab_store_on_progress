@@ -2,7 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:lab_store/presentation_layer/provider/favorite_provider.dart';
-import 'package:lab_store/presentation_layer/screens/btm_nav_bar_screen/setting_screen.dart';
+import 'package:lab_store/presentation_layer/screens/btm_nav_bar_screen/setting_screen/setting_screen.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
