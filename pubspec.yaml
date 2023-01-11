@@ -45,6 +45,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   badges: ^2.0.3
   flutter_native_splash: ^2.2.16
+  url_launcher: ^6.1.7
 
 
 dev_dependencies:
