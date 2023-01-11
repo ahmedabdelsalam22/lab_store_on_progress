@@ -55,6 +55,14 @@ class SettingScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
+              _listTiles(
+                  title: 'Address',
+                  subtitle: 'address',
+                  icon: IconlyBold.profile,
+                  onPressed: () async {
+                    /// TODO
+                  },
+                  color: Colors.black),
             ],
           ),
         ),
