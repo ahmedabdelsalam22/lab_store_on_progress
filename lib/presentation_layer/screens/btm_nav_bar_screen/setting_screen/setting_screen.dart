@@ -63,6 +63,13 @@ class SettingScreen extends StatelessWidget {
                     /// TODO
                   },
                   color: Colors.black),
+              _listTiles(
+                  title: 'Logout',
+                  icon: IconlyBold.logout,
+                  color: Colors.black,
+                  onPressed: () {
+                    ///Navigate to login screen
+                  }),
             ],
           ),
         ),
