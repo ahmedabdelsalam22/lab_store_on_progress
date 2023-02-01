@@ -4,16 +4,31 @@ import 'package:flutter/material.dart';
 class AuthProvider with ChangeNotifier {
   var auth = FirebaseAuth.instance;
 
-  void userRegister(String email, String password) {
+  void signUpWithEmailAndPassword(String email, String password) {
     auth
         .createUserWithEmailAndPassword(
       email: email,
       password: password,
     )
         .then((value) {
-      print(value.user!.email);
+      debugPrint(value.user!.email);
     }).catchError((onError) {
-      print(onError.toString());
+      debugPrint(onError.toString());
+    });
+    notifyListeners();
+  }
+
+  void signInWithEmailAndPassword(String email, String password) {
+    auth
+        .signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    )
+        .then((value) {
+      debugPrint('login success');
+      debugPrint(value.user!.email);
+    }).catchError((onError) {
+      debugPrint(onError.toString());
     });
     notifyListeners();
   }
