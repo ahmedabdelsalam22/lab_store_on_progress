@@ -39,9 +39,10 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  /// TODO: fix this issue
   void signOut(BuildContext context) {
     auth.signOut().then((value) {
-      Navigator.pushReplacementNamed(context, AppRoutes.loginScreenRoute);
+      Navigator.of(context).pushReplacementNamed(AppRoutes.registerScreenRoute);
     });
     notifyListeners();
   }

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,6 +12,8 @@ import 'package:provider/provider.dart';
 
 import 'core/style/theme.dart';
 
+String? initialRoute;
+
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
@@ -18,6 +21,16 @@ void main() async {
   ));
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  // check if user logged or not
+  FirebaseAuth.instance.authStateChanges().listen((user) {
+    if (user == null) {
+      initialRoute = AppRoutes.loginScreenRoute;
+    } else {
+      initialRoute = AppRoutes.btmNavScreenRoute;
+    }
+  });
+
   runApp(const MyApp());
 }
 
@@ -57,7 +70,7 @@ class _MyAppState extends State<MyApp> {
             debugShowCheckedModeBanner: false,
             title: 'Lab Store',
             theme: Styles.themeData(value.getDarkTheme, context),
-            initialRoute: AppRoutes.loginScreenRoute,
+            initialRoute: initialRoute,
             onGenerateRoute: AppRouter.onGenerateRoute,
           );
         },
