@@ -1,10 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/route_manager/app_routes.dart';
+
 class AuthProvider with ChangeNotifier {
   var auth = FirebaseAuth.instance;
 
-  void signUpWithEmailAndPassword(String email, String password) {
+  void signUpWithEmailAndPassword(
+      String email, String password, BuildContext context) {
     auth
         .createUserWithEmailAndPassword(
       email: email,
@@ -12,13 +15,15 @@ class AuthProvider with ChangeNotifier {
     )
         .then((value) {
       debugPrint(value.user!.email);
+      Navigator.pushReplacementNamed(context, AppRoutes.btmNavScreenRoute);
     }).catchError((onError) {
       debugPrint(onError.toString());
     });
     notifyListeners();
   }
 
-  void signInWithEmailAndPassword(String email, String password) {
+  void signInWithEmailAndPassword(
+      String email, String password, BuildContext context) {
     auth
         .signInWithEmailAndPassword(
       email: email,
@@ -27,6 +32,7 @@ class AuthProvider with ChangeNotifier {
         .then((value) {
       debugPrint('login success');
       debugPrint(value.user!.email);
+      Navigator.pushReplacementNamed(context, AppRoutes.btmNavScreenRoute);
     }).catchError((onError) {
       debugPrint(onError.toString());
     });

@@ -128,9 +128,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
                         authProvider.signUpWithEmailAndPassword(
-                          _emailController.text,
-                          _passwordController.text,
-                        );
+                            _emailController.text,
+                            _passwordController.text,
+                            context);
                       }
                     },
                   ),
