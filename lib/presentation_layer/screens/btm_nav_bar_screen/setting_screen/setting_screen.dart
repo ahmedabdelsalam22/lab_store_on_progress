@@ -2,7 +2,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:lab_store/presentation_layer/provider/auth/auth_provider.dart';
 import 'package:lab_store/presentation_layer/screens/btm_nav_bar_screen/setting_screen/social_medial.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/style/color_manager.dart';
 import '../../../widgets/text_widget.dart';
@@ -12,6 +14,8 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var authProvider = Provider.of<AuthProvider>(context);
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -96,7 +100,7 @@ class SettingScreen extends StatelessWidget {
                   icon: IconlyBold.logout,
                   color: Colors.black,
                   onPressed: () {
-                    ///Navigate to login screen
+                    authProvider.signOut(context);
                   },
                 ),
                 SizedBox(
