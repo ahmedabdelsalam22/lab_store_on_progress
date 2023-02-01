@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -15,6 +16,8 @@ class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var authProvider = Provider.of<AuthProvider>(context);
+
+    var currentUser = FirebaseAuth.instance.currentUser;
 
     return SafeArea(
       child: Scaffold(
@@ -43,7 +46,9 @@ class SettingScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                       children: <TextSpan>[
                         TextSpan(
-                            text: 'user',
+                            text: currentUser!.displayName != null
+                                ? '${currentUser.displayName}'
+                                : 'userName',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 25,
@@ -58,7 +63,9 @@ class SettingScreen extends StatelessWidget {
                   height: 5,
                 ),
                 TextWidget(
-                  text: 'user email',
+                  text: currentUser.email != null
+                      ? '${currentUser.email}'
+                      : 'user email',
                   color: Colors.black,
                   textSize: 18,
                   // isTitle: true,
