@@ -38,4 +38,9 @@ class AuthProvider with ChangeNotifier {
     });
     notifyListeners();
   }
+
+  void signOut() {
+    auth.signOut();
+    notifyListeners();
+  }
 }
