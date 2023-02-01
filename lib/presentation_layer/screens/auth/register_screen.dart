@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lab_store/core/style/color_manager.dart';
 import 'package:lab_store/presentation_layer/widgets/back_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/route_manager/app_routes.dart';
+import '../../provider/auth/auth_provider.dart';
 import '../../widgets/default_form_field.dart';
 import '../../widgets/main_button.dart';
 
@@ -33,6 +35,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var authProvider = Provider.of<AuthProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -121,8 +125,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   MainButton(
                     text: 'SIGN UP',
-                    onTap: () async {
-                      if (_formKey.currentState!.validate()) {}
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        authProvider.userRegister(
+                          _emailController.text,
+                          _passwordController.text,
+                        );
+                      }
                     },
                   ),
                   const SizedBox(
