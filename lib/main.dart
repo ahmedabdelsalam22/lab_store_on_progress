@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
             debugShowCheckedModeBanner: false,
             title: 'Lab Store',
             theme: Styles.themeData(value.getDarkTheme, context),
-            initialRoute: AppRoutes.btmNavScreenRoute,
+            initialRoute: AppRoutes.loginScreenRoute,
             onGenerateRoute: AppRouter.onGenerateRoute,
           );
         },
