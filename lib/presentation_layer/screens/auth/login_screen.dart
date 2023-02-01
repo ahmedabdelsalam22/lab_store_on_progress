@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/route_manager/app_routes.dart';
 import '../../../core/style/color_manager.dart';
+import '../../provider/auth/auth_provider.dart';
 import '../../widgets/default_form_field.dart';
 import '../../widgets/main_button.dart';
 
@@ -29,6 +31,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var authProvider = Provider.of<AuthProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -99,8 +103,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   MainButton(
                     text: 'LOGIN',
                     onTap: () {
-                      /// Todo on function
-                      if (_formKey.currentState!.validate()) {}
+                      if (_formKey.currentState!.validate()) {
+                        authProvider.signInWithEmailAndPassword(
+                          _emailController.text,
+                          _passwordController.text,
+                          context,
+                        );
+                      }
                     },
                   ),
                   const SizedBox(
